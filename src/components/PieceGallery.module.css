@@ -1,0 +1,44 @@
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.imageButton {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.imageButton:hover .image {
+  opacity: 0.95;
+}
+
+.caption {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .imageButton:first-child {
+    grid-column: 1 / -1;
+  }
+}

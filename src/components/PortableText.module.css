@@ -1,0 +1,23 @@
+.paragraph {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 1em;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-light);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.link:hover {
+  text-decoration-color: var(--color-text);
+}

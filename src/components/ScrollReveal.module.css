@@ -1,0 +1,19 @@
+.wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--transition-fade),
+    transform var(--transition-fade);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    opacity: 1;
+    transform: none;
+  }
+}
