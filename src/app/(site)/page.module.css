@@ -40,3 +40,11 @@
   text-align: center;
   padding: 80px 0;
 }
+
+.signup {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-piece-gap) var(--space-page-x) 0;
+  display: flex;
+  justify-content: center;
+}

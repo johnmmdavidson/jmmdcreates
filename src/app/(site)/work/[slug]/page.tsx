@@ -12,6 +12,7 @@ import { visualArtworkJsonLd } from "@/lib/jsonLd";
 import { urlFor } from "@/lib/sanity.image";
 import { PieceGallery } from "@/components/PieceGallery";
 import { PortableText } from "@/components/PortableText";
+import { EmailSignup } from "@/components/EmailSignup";
 import styles from "./page.module.css";
 
 interface PageProps {
@@ -114,6 +115,10 @@ export default async function PieceDetailPage({ params }: PageProps) {
             <PortableText value={piece.description} />
           </section>
         )}
+
+        <div className={styles.signup}>
+          <EmailSignup contactEmail={settings?.contactEmail} />
+        </div>
 
         <nav className={styles.nav} aria-label="Piece navigation">
           {prev ? (

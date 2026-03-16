@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getSiteSettings, getAllPieces } from "@/lib/sanity.queries";
 import { PortableText } from "@/components/PortableText";
 import { PieceCard } from "@/components/PieceCard";
+import { EmailSignup } from "@/components/EmailSignup";
 import { personJsonLd } from "@/lib/jsonLd";
 import styles from "./page.module.css";
 
@@ -69,6 +70,10 @@ export default async function HomePage() {
         {pieces.length === 0 && (
           <p className={styles.empty}>No pieces yet.</p>
         )}
+      </section>
+
+      <section className={styles.signup}>
+        <EmailSignup contactEmail={settings?.contactEmail} />
       </section>
     </>
   );

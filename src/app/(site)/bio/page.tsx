@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getSiteSettings } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity.image";
 import { PortableText } from "@/components/PortableText";
+import { EmailSignup } from "@/components/EmailSignup";
 import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -47,6 +48,10 @@ export default async function BioPage() {
             <PortableText value={settings.bio} />
           </div>
         )}
+      </div>
+
+      <div className={styles.signup}>
+        <EmailSignup contactEmail={settings?.contactEmail} />
       </div>
 
       {settings?.contactEmail && (
