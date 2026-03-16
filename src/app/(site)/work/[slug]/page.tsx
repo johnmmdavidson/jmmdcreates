@@ -108,13 +108,13 @@ export default async function PieceDetailPage({ params }: PageProps) {
           </div>
         </header>
 
-        <PieceGallery images={piece.images} pieceTitle={piece.title} />
-
         {piece.description && (
           <section className={styles.description}>
             <PortableText value={piece.description} />
           </section>
         )}
+
+        <PieceGallery images={piece.images} pieceTitle={piece.title} />
 
         <div className={styles.signup}>
           <EmailSignup contactEmail={settings?.contactEmail} />

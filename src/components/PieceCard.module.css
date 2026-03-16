@@ -1,7 +1,21 @@
 .card {
+  /* wrapper article, no layout — cardLink handles it */
+}
+
+.cardLink {
   display: flex;
   gap: var(--card-gap);
   align-items: flex-start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cardLink:hover .title {
+  color: var(--color-text-muted);
+}
+
+.cardLink:hover .primaryImage {
+  transform: scale(1.015);
 }
 
 .imageColumn {
@@ -9,13 +23,8 @@
   min-width: 0;
 }
 
-.primaryImageButton {
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  background: none;
+.primaryImageWrap {
+  overflow: hidden;
 }
 
 .primaryImage {
@@ -23,6 +32,7 @@
   height: auto;
   display: block;
   border-radius: var(--radius-none);
+  transition: transform 0.3s ease;
 }
 
 .thumbnails {
@@ -33,12 +43,8 @@
   overflow-x: auto;
 }
 
-.thumbButton {
+.thumbWrap {
   flex-shrink: 0;
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  background: none;
 }
 
 .thumbnail {
@@ -47,11 +53,6 @@
   object-fit: cover;
   border-radius: var(--radius-thumbnail);
   display: block;
-  transition: opacity 0.2s ease;
-}
-
-.thumbButton:hover .thumbnail {
-  opacity: 0.8;
 }
 
 .thumbMore {
@@ -66,19 +67,13 @@
   color: var(--color-text-muted);
   background: var(--color-border);
   border-radius: var(--radius-thumbnail);
-  cursor: pointer;
 }
 
 .metaColumn {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  text-decoration: none;
   padding-top: 4px;
-}
-
-.metaColumn:hover .title {
-  color: var(--color-text-muted);
 }
 
 .title {
@@ -99,7 +94,7 @@
 }
 
 @media (max-width: 767px) {
-  .card {
+  .cardLink {
     flex-direction: column;
     gap: 16px;
   }
