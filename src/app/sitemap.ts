@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
 import { getAllPieceSlugs } from "@/lib/sanity.queries";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

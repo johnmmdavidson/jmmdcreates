@@ -5,12 +5,22 @@ const isConfigured =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID &&
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID !== "placeholder";
 
+// The export build (Cloudflare) fails on any Sanity error, so a broken read never deploys
+// an empty portfolio. The Vercel build keeps swallowing errors until PR 3.
+const failOnError = process.env.STATIC_EXPORT === "1";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function safeFetch<T>(query: string, params?: any): Promise<T | null> {
-  if (!isConfigured) return null;
+  if (!isConfigured) {
+    if (failOnError) throw new Error("NEXT_PUBLIC_SANITY_PROJECT_ID is not set for the build");
+    return null;
+  }
   try {
     return await client.fetch<T>(query, params);
-  } catch {
+  } catch (err) {
+    if (failOnError) {
+      throw new Error("Sanity query failed during build: " + (err instanceof Error ? err.message : String(err)));
+    }
     return null;
   }
 }
@@ -74,7 +84,7 @@ export async function getAdjacentPieces(
   endDate: string,
   currentId: string
 ): Promise<{ prev: Pick<Piece, "title" | "slug"> | null; next: Pick<Piece, "title" | "slug"> | null }> {
-  if (!isConfigured) return { prev: null, next: null };
+  if (!isConfigured && !failOnError) return { prev: null, next: null };
 
   const [prev, next] = await Promise.all([
     safeFetch<Pick<Piece, "title" | "slug">>(
