@@ -1,0 +1,17 @@
+{
+  "name": "jmmdcreates-site",
+  "main": "worker/index.ts",
+  // wrangler 4.116.0's local runtime refuses dates after 2026-08-06 (COR-402, measured).
+  "compatibility_date": "2026-08-01",
+  // workers.dev is the preview address before cutover; false in PR 3.
+  "workers_dev": true,
+  // No per-version preview URLs.
+  "preview_urls": false,
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*", "/studio/*"]
+  }
+}

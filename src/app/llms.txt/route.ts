@@ -2,9 +2,10 @@ import { getSiteSettings, getAllPieces } from "@/lib/sanity.queries";
 import { portableTextToPlain } from "@/lib/portableTextToPlain";
 import { formatDateRange } from "@/lib/format";
 
-export async function GET(request: Request) {
-  const { origin } = new URL(request.url);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || origin;
+export const dynamic = "force-static";
+
+export async function GET() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const settings = await getSiteSettings();
   const pieces = await getAllPieces();
 
