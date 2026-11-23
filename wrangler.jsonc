@@ -7,6 +7,12 @@
   "workers_dev": true,
   // No per-version preview URLs.
   "preview_urls": false,
+  // Workers routes, not Custom Domains: inert while both DNS records are DNS only.
+  // Removing these lines does not remove the routes; delete them in the dashboard.
+  "routes": [
+    { "pattern": "jmmdcreates.com/*", "zone_name": "jmmdcreates.com" },
+    { "pattern": "www.jmmdcreates.com/*", "zone_name": "jmmdcreates.com" }
+  ],
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",
