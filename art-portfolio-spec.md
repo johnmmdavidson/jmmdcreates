@@ -12,7 +12,7 @@ A personal art portfolio for a sculptor, woodworker, and fiber artist based in S
 |-------|------|-------|
 | CMS | Sanity (free tier) | Content management, image CDN, admin studio |
 | Frontend | Next.js (App Router) | Static generation, image optimization, SEO |
-| Hosting | Vercel (free tier) | Deploys from GitHub, pairs natively with Next.js |
+| Hosting | Cloudflare Workers (free tier) | Static export served as Workers static assets; Workers Builds builds branch `live` |
 | Fonts | Google Fonts | Fraunces (variable), IBM Plex Sans |
 | Images | Sanity Image CDN | Automatic resizing, format optimization (WebP/AVIF), cropping |
 
@@ -394,7 +394,7 @@ Keep the Studio minimal and clear for a non-technical user:
 
 ## Deployment & Build
 
-- **Build trigger:** Sanity webhook on content publish → triggers Vercel rebuild. This means the site is statically generated but updates within ~30 seconds of publishing in Sanity.
+- **Build trigger:** Sanity webhook on content publish → calls a Workers Builds deploy hook, which rebuilds and deploys branch `live` (`npm ci && npm run build:cf`, then `wrangler deploy`). The site is a static export, so a publish shows up once that build is live, about 1–2 minutes later.
 - **Environment variables needed:**
   - `NEXT_PUBLIC_SANITY_PROJECT_ID`
   - `NEXT_PUBLIC_SANITY_DATASET` (usually `production`)

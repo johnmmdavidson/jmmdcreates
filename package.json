@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cf": "STATIC_EXPORT=1 next build",
-    "start": "next start",
+    "build:cf": "npm run build",
+    "start": "npx --yes wrangler@4.116.0 dev",
     "lint": "eslint"
   },
   "dependencies": {
