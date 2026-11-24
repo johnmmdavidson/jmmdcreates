@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:cf": "npm run build",
-    "start": "next start",
+    "start": "npx --yes wrangler@4.116.0 dev",
     "lint": "eslint"
   },
   "dependencies": {
