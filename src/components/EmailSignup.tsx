@@ -63,7 +63,7 @@ export function EmailSignup({ contactEmail }: EmailSignupProps) {
     return (
       <div className={styles.wrap}>
         <p className={styles.message} role="status" aria-live="polite">
-          You're already on the list.
+          You&apos;re already on the list.
         </p>
       </div>
     );
@@ -105,7 +105,7 @@ export function EmailSignup({ contactEmail }: EmailSignupProps) {
           </button>
         </div>
 
-        <p className={styles.privacy}>It won't be spam. I promise.</p>
+        <p className={styles.privacy}>It won&apos;t be spam. I promise.</p>
 
         {status === "invalid" && (
           <p
@@ -114,7 +114,7 @@ export function EmailSignup({ contactEmail }: EmailSignupProps) {
             role="alert"
             aria-live="polite"
           >
-            That doesn't look like an email address.
+            That doesn&apos;t look like an email address.
           </p>
         )}
 
