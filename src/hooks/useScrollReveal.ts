@@ -16,6 +16,8 @@ export function useScrollReveal(skip = false) {
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (prefersReduced) {
+      // Reduced motion shows content at once; moving this setState out of the effect would change when.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsVisible(true);
       return;
     }

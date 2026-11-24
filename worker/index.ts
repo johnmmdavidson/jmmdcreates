@@ -2,9 +2,10 @@
 // Workers static assets without running this code; it runs only for /api/* and /studio/*
 // (wrangler.jsonc, run_worker_first).
 //
-// /api/subscribe is src/app/api/subscribe/route.vercel.ts ported, with these differences:
+// /api/subscribe is ported from the Next.js route the site used on Vercel
+// (src/app/api/subscribe/route.vercel.ts, deleted in c7be716), with these differences:
 // the client IP comes from cf-connecting-ip; a non-POST answers 405 with JSON; a body that is
-// not a JSON object with a string email answers 400 (the route answers 500 on {"email":42});
+// not a JSON object with a string email answers 400 (the old route answered 500 on {"email":42});
 // the Buttondown call times out after 10 s; BUTTONDOWN_URL is a local test seam, set only in
 // .dev.vars and never in production.
 
@@ -23,7 +24,7 @@ function json(body: unknown, status = 200): Response {
   });
 }
 
-// Simple in-memory rate limiting, per Worker instance (as weak as the Vercel route's).
+// Simple in-memory rate limiting, per Worker instance (as weak as the old route's).
 const rateMap = new Map<string, number[]>();
 
 function isRateLimited(ip: string): boolean {
@@ -113,7 +114,7 @@ async function subscribe(request: Request, env: Env): Promise<Response> {
   }
 }
 
-export default {
+const worker = {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === "/api/subscribe") return subscribe(request, env);
@@ -124,3 +125,5 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
+
+export default worker;
