@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cf": "STATIC_EXPORT=1 next build",
+    "build:cf": "npm run build",
     "start": "next start",
     "lint": "eslint"
   },
